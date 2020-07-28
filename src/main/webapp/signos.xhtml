@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+
+        <div class="modal-header">
+            <h5 class="modal-title" id="mediumModalLabel">Agregar Capitulos</h5>
+
+        </div>
+
+
+        <h:form>
+            <div class="modal-body">
+
+                <div class="form-row">
+
+
+                    <div class="form-group col-md-6">
+                        <label for="producto-categoria">Pacientes</label>
+                        <h:selectOneMenu class="form-control" id="producto-categoria" converter="selectOneMenuConverter" value="#{productoBean.categoria}">
+                            <f:selectItem  itemLabel="Seleccione..." itemValue="#{null}" noSelectionOption="true"  />
+                            <f:selectItems  value="#{productoBean.categorias}" var="categoriaItem" 
+                                            itemLabel="#{categoriaItem.nombre}" itemValue="#{categoriaItem}"/>
+                        </h:selectOneMenu>
+                        <h:message for="producto-categoria" style="color:red" />
+                    </div>  
+
+
+
+
+
+
+
+
+
+
+                    <div class="form-group col-md-6">
+                        <label for="Numero-paginas">Numero </label>
+                        <h:inputText class="form-control" id="Numero-paginas" value="#{libroBean.numero}" size="4" 
+                                     converter="javax.faces.Integer"/>
+
+                    </div>
+
+
+
+                    <div class="form-group col-md-6">
+                        <label for="ISBN">titulo</label>
+                        <h:inputText class="form-control" id="ISBN" value="#{libroBean.titulo}" required="true"
+                                     requiredMessage="Campo Obligatorio"/>
+                        <h:message for="ISBN" style="color:red" />
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <p:commandButton  class="btn btn-success" value="Crear Capitulo" update=":form"  action="#{libroBean.guardarCapitulo()}" />
+                </div>
+
+
+                <div class="modal-footer">
+                    <p:link outcome="productDetail" value="Bookmark">
+                        <f:param name="productId" value="10" />
+                    </p:link>
+                </div>
+            </div>
+        </h:form>
+
+
+
+
+    </h:body>
+</html>
+

@@ -136,6 +136,14 @@ public class Paciente implements Serializable{
         return "Paciente{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", direccion=" + direccion + ", email=" + email + ", citas=" + citas + '}';
     }
     
+        public void addCita(CitaMedica cita) {
+        if (!citas.contains(cita)) {
+            citas.add(cita);
+           // capitulo.setLibro(this);
+        }
+    }
+    
+    
     
 
     

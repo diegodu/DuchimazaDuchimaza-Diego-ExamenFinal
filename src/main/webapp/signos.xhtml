@@ -1,50 +1,93 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title></title>
     </h:head>
     <h:body>
 
 
+
+
+        <div class="col-sm-4 d-flex">
+            <div class="page-header float-left d-flex align-items-center">
+                <div class="page-title ">
+                    <h:form id="f-buscar" class="d-flex">
+                        <div class="form-group mr-3">
+                            <label for="input-search" class="sr-only">Buscar</label>
+                            <h:inputText class="form-control" id="input-search" a:placeholder="Buscar"
+                                         value="#{pacienteBean.nombre}"
+                                         />
+                        </div>
+
+                        <!-- <h:commandButton class="btn btn-primary" value="Buscar"
+                                                                            action=""
+                                                                            />   -->
+
+
+                        <h:column>
+                            <f:facet name="header">Acciones</f:facet>
+
+
+
+                            <h:commandLink class="btn btn-primary mr-3" style="width: 100px; height: 40px;" value="Buscar" action="#{pacienteBean.buscarPorNombre()}"
+                                           rendered="#{pacienteBean.nombre== null}" />
+                            <h:commandLink class="btn btn-primary mr-3" style="width: 100px; height: 40px; background-color: green;" value="Listar" action="#{pacienteBean.listar()}"
+                                           rendered="#{pacienteBean.nombre != null}" />
+
+
+
+                        </h:column>
+
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <br/>
+
+
         <div class="modal-header">
-            <h5 class="modal-title" id="mediumModalLabel">Agregar Capitulos</h5>
+            <h5 class="modal-title" id="mediumModalLabel">Agregar Citas</h5>
 
         </div>
 
 
-        <h:form>
+        <h:form id="cap">
             <div class="modal-body">
 
                 <div class="form-row">
-
-
                     <div class="form-group col-md-6">
-                        <label for="producto-categoria">Pacientes</label>
-                        <h:selectOneMenu class="form-control" id="producto-categoria" converter="selectOneMenuConverter" value="#{productoBean.categoria}">
-                            <f:selectItem  itemLabel="Seleccione..." itemValue="#{null}" noSelectionOption="true"  />
-                            <f:selectItems  value="#{productoBean.categorias}" var="categoriaItem" 
-                                            itemLabel="#{categoriaItem.nombre}" itemValue="#{categoriaItem}"/>
-                        </h:selectOneMenu>
-                        <h:message for="producto-categoria" style="color:red" />
-                    </div>  
+                        <label for="Numero-paginas">Presion</label>
+                        <h:inputText class="form-control" id="Numero-paginas" value="#{pacienteBean.presion}" size="4" 
+                                     converter="javax.faces.Integer"/>
 
-
-
-
-
-
-
-
-
-
+                    </div>
+                    
                     <div class="form-group col-md-6">
-                        <label for="Numero-paginas">Numero </label>
-                        <h:inputText class="form-control" id="Numero-paginas" value="#{libroBean.numero}" size="4" 
+                        <label for="Numero-paginas">F. Cardiaca</label>
+                        <h:inputText class="form-control" id="Numero-paginass" value="#{pacienteBean.frecuenciaCardiaca}" size="4" 
+                                     converter="javax.faces.Integer"/>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Numero-paginas">F. respiratoria</label>
+                        <h:inputText class="form-control" id="Numero-paginasss" value="#{pacienteBean.frecuenciaRespiratoria}" size="4" 
+                                     converter="javax.faces.Integer"/>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Numero-paginas">Presion</label>
+                        <h:inputText class="form-control" id="Numero-paginassss" value="#{pacienteBean.presion}" size="4" 
                                      converter="javax.faces.Integer"/>
 
                     </div>
@@ -52,29 +95,92 @@
 
 
                     <div class="form-group col-md-6">
-                        <label for="ISBN">titulo</label>
-                        <h:inputText class="form-control" id="ISBN" value="#{libroBean.titulo}" required="true"
+                        <label for="ISBN">sintomas</label>
+                        <h:inputText class="form-control" id="ISBN" value="#{pacienteBean.sistomas}" required="true"
                                      requiredMessage="Campo Obligatorio"/>
                         <h:message for="ISBN" style="color:red" />
                     </div>
+                     <div class="form-group col-md-6">
+                        <label for="ISBN">alergias</label>
+                        <h:inputText class="form-control" id="ISBNN" value="#{pacienteBean.alergias}" required="true"
+                                     requiredMessage="Campo Obligatorio"/>
+                        <h:message for="ISBN" style="color:red" />
+                    </div>
+                     <div class="form-group col-md-6">
+                        <label for="ISBN">enfermedades</label>
+                        <h:inputText class="form-control" id="ISBNNN" value="#{pacienteBean.enfermedades}" required="true"
+                                     requiredMessage="Campo Obligatorio"/>
+                        <h:message for="ISBN" style="color:red" />
+                    </div>
+                    
 
 
                 </div>
 
+                <br/>
 
+
+                <div class="form-group col-md-6">
+                    <label for="producto-categoria">Pacientes</label>
+                    <h:selectOneMenu class="form-control" id="producto-categoria" converter="selectOneMenuConverter" value="#{pacienteBean.paciente}">
+                        <f:selectItem  itemLabel="Seleccione..." itemValue="#{null}" noSelectionOption="true"  />
+                        <f:selectItems  value="#{pacienteBean.pacientes}" var="libroItem" 
+                                        itemLabel="#{libroItem.nombre}" itemValue="#{libroItem}"/>
+                    </h:selectOneMenu>
+                    <h:message for="producto-categoria" style="color:red" />
+                </div>  
+
+    
 
                 <div class="modal-footer">
-                    <p:commandButton  class="btn btn-success" value="Crear Capitulo" update=":form"  action="#{libroBean.guardarCapitulo()}" />
-                </div>
+                    <p:commandButton  class="btn btn-success" value="Crear Cita" update=":form"  action="#{pacienteBean.guardarCita()}" />
 
-
-                <div class="modal-footer">
-                    <p:link outcome="productDetail" value="Bookmark">
-                        <f:param name="productId" value="10" />
-                    </p:link>
                 </div>
             </div>
         </h:form>
+
+
+
+
+        <br/>
+
+
+        <div class="modal-header">
+            <h5 class="modal-title" id="mediumModalLabel">Listar pacientes</h5>
+
+        </div>
+
+
+        <h:form  id="form">
+
+            <p:dataTable id="datatable" value="#{pacienteBean.pacientes}" var="l" style="margin: 2em;" rowKey="#{l.cedula}">
+
+
+
+                <p:column headerText="Cedula">
+                    <h:outputText value="#{l.cedula}"/>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{l.nombre}"/>
+                </p:column>
+                <p:column headerText="Apellido">
+                    <h:outputText value="#{l.apellido}"/>
+                </p:column>
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{l.telefono}"/>
+                </p:column>
+                <p:column headerText="Email">
+                    <h:outputText value="#{l.email}"/>
+                </p:column>
+
+
+
+            </p:dataTable>
+
+
+        </h:form>   
+        
+       
 
 
 
